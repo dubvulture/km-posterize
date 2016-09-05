@@ -4,4 +4,4 @@ OPT =
 
 main: ./src/main.c ./src/bmp.c ./src/kmeans.c
 
-	$(CC) $(CFLAGS) -o main ./src/main.c $(OPT)
+	$(CC) $(CFLAGS) -o main.o ./src/main.c $(OPT)
