@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -std=gnu11 -Wall -Wpedantic $(OPT)
-CCOMPILE = -fpic -c
+CCOMPILE = -fpic -c -Isrc/includes/
 CSHARED = -shared -o
 CLINK = -lm
 OPT =

@@ -38,7 +38,7 @@ class Image(object):
 			raise ValueError('Invalid type for numpy array.')
 
 		self.ffi = FFI()
-		with open('./src/wrapper.h', 'r') as f:
+		with open('./src/includes/wrapper.h', 'r') as f:
 			self.ffi.cdef(f.read())
 		self.lib = self.ffi.dlopen('./wrapper.so')
 
