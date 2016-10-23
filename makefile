@@ -1,7 +1,27 @@
 CC = gcc
-CFLAGS = -Wall -lm -std=c99 -pedantic
+CFLAGS = -std=gnu11 -Wall -Wpedantic $(OPT)
+CCOMPILE = -fpic -c
+CSHARED = -shared -o
+CLINK = -lm
 OPT =
 
-main: ./src/main.c ./src/bmp.c ./src/kmeans.c
+SOURCEDIR = ./src
+BUILDDIR = ./build
 
-	$(CC) $(CFLAGS) -o main.o ./src/main.c $(OPT)
+SOURCES = $(wildcard $(SOURCEDIR)/*.c)
+OBJECTS = $(patsubst $(SOURCEDIR)/%.c, $(BUILDDIR)/%.o, $(SOURCES))
+
+all: dir wrapper.so
+
+dir:
+	mkdir -p $(BUILDDIR)
+
+wrapper.so: $(OBJECTS)
+	$(CC) $(CFLAGS) $(CSHARED) $@ $^ $(CLINK)
+
+$(OBJECTS): $(BUILDDIR)/%.o : $(SOURCEDIR)/%.c
+	$(CC) $(CFLAGS) $(CCOMPILE) -o $@ $^
+
+
+clean:
+	rm -rf $(BUILDDIR)
