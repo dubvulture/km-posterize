@@ -32,4 +32,5 @@
 *.dSYM/
 *.su
 
-# Output files
+# Python Bytecode
+*.pyc
