@@ -9,9 +9,7 @@ KM_INT32 = 1
 KM_UINT8 = 2
 
 
-
 class Image(object):
-
 
 	def __init__(self, input_image, greyscale=False, matrix=None, depth=KM_UINT8):
 		"""
@@ -24,7 +22,6 @@ class Image(object):
 			KM_FLOAT32: np.float32,
 			KM_INT32: np.int32,
 			KM_UINT8: np.uint8
-
 		}.get(depth, None)
 
 		if type(matrix) is np.ndarray:
@@ -60,7 +57,7 @@ class Image(object):
 
 		if self.np_type == np.float32:
 			image = image.astype(self.np_type) / np.iinfo(image.dtype).max 
-	
+
 		return image
 
 
@@ -103,3 +100,4 @@ class Image(object):
 
 		output = re.sub('(?P<pre>.*)(?P<format>\..*?)', '\g<pre>_output\g<format>', self.input_image)
 		cv2.imwrite(output, posterized)
+

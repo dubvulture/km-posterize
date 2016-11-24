@@ -19,7 +19,7 @@ int32_t * kmeans_int32(int32_t *space, int points, int dim, int k)
 	while (1) {
 		new_cluster = PARTITION(space, centroids, points, dim, k);
 
-		if (arr_equal(cluster_map, new_cluster, k)) {
+		if (arr_equal(cluster_map, new_cluster, points)) {
 			free(cluster_map);
 			free(new_cluster);
 			return centroids;
