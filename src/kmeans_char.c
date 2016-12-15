@@ -29,10 +29,11 @@ uint8_t * kmeans_uint8(uint8_t *space, int points, int dim, int k)
 	int *cluster_map = calloc(points, sizeof(int));
 	int *new_cluster;
 
+	int threshold = points / 500; // 0.5%
 	while (1) {
 		new_cluster = PARTITION(space, centroids, points, dim, k);
 
-		if (arr_equal(cluster_map, new_cluster, points)) {
+		if (difference(cluster_map, new_cluster, points) < threshold) {
 			free(cluster_map);
 			free(new_cluster);
 			return centroids;
@@ -105,6 +106,7 @@ int * partition_uint8(uint8_t *space, uint8_t *centroids, int points, int dim, i
 {
 	int *cluster_map = malloc(sizeof(int) * points);
 
+	#pragma omp parallel for
 	for (int i=0 ; i<points ; ++i) {
 		cluster_map[i] = ASSIGN_CLUSTER(&space[i*dim + 0], centroids, dim, k);
 	}

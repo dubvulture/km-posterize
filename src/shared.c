@@ -4,21 +4,19 @@
 
 
 
-
 /**
- * Just check whether arr1 and arr2 are equal
+ *	Return the number of different items in the same position of given arrays
  */
-int arr_equal(int *arr1, int *arr2, int k)
+int difference(int *arr1, int *arr2, int k)
 {
-	int flag = 1;
-	for (int i=0 ; i<k && flag ; ++i) {
+	int count = 0;
+	for (int i=0 ; i<k ; ++i) {
 		if (arr1[i] != arr2[i])
-			flag = 0;
+			count++;
 	}
 
-	return flag;
+	return count;
 }
-
 
 
 /**

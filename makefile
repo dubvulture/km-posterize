@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -std=gnu11 -Wall -Wpedantic $(OPT)
-CCOMPILE = -fpic -c -Isrc/includes/
-CSHARED = -shared -o
+CCOMPILE = -fpic -c -Isrc/includes/ -fopenmp
+CSHARED = -shared -fopenmp -o
 CLINK = -lm
 OPT =
 
